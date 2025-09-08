@@ -1,7 +1,10 @@
+const https = require("https");
 const express = require('express');
+const fs = require("fs");
 var cors = require('cors');
+require('dotenv').config();
+
 const app = express();
-const port = 3000;
 
 // These lines will be explained in detail later in the unit
 app.use(express.json());// process json
@@ -9,8 +12,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 // These lines will be explained in detail later in the unit
 
+//Extract values from environment variables
+const port = process.env.PORT || 3000;
+const uri = process.env.URI;
+
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://CQUpass:admin@cluster0.pvzye.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 
 // Global for general use
